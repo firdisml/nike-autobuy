@@ -1,0 +1,26 @@
+body {
+    background-color: #f0f8ff;
+    
+    font-size: 14px;
+    line-height: 1.5em;
+    height: 520px;
+    width: 500px;
+    padding: 10px 5px;
+}
+
+
+.rounded-lg {
+  border-radius: 1rem;
+}
+
+.nav-pills .nav-link {
+  color: #555;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.btn-warning{
+	color: #fff;
+}

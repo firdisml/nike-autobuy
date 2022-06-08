@@ -1,0 +1,73 @@
+{
+  "manifest_version": 2,
+  
+  "name": "Malas ACO",
+  "version": "1.0.4",
+  
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": [
+        "*://*.nike.com/*"
+      ],
+      "run_at": "document_end",
+      "js": [
+        "vendors/jquery.js",
+        "js/cs.js"
+      ]
+    },
+
+    {
+      "js": [ "js/instantpage.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_end"
+    },
+
+    {
+      "all_frames": true,
+      "js": [ "js/removeImage.cs.js" ],
+      "matches": [ "*://*/*" ],
+      "css": ["css/loadimage.css"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "js/common.js",
+      "js/bg.js",
+
+      "speedup/js/background.js"
+    ]
+  },
+
+  "icons": {
+    "128": "icons.png"
+  },
+
+  "options_page": "speedup/html/option.html",
+
+  "browser_action": {
+    "default_icon": {
+      "128": "icons.png"
+    },
+    "default_title": "Malas ACO",
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "incognito": "spanning",
+  "web_accessible_resources": [
+    "*.*"
+  ],
+  "permissions": [
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking",
+    "activeTab",
+    "proxy",
+    "storage",
+    "\u003Call_urls>",
+    "tabs"
+  ]
+}

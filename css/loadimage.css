@@ -1,0 +1,13 @@
+.needtoloadimagestyle{
+	background-repeat: no-repeat;
+    background-position: center center;
+	opacity:0;
+}
+.needtoloadimagestyle:hover{
+	opacity: 1;
+}
+.loadedimagestyle{
+	opacity: 1;
+}
+
+

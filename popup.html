@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" class="mdc-typography" xmlns:v-on="http://www.w3.org/1999/xhtml"
+	xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>Nike Multi-Card</title>
+		<link rel="stylesheet" href="vendors/bootstrap.css">
+		<link href="css/popup.css" rel="stylesheet">
+		<link href="css/switch.css" rel="stylesheet">
+		<link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+	</head>
+	<body id="app">
+		
+		<div class="bg-white shadow-sm p-2">
+			<ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+				
+				<li class="nav-item">
+					<a data-toggle="pill" href="#proxyTab" class="nav-link active  rounded-pill">
+						<i class="fa fa-filter"></i>
+						Proxy
+					</a>
+				</li>
+
+				<li class="nav-item cardList">
+					<a data-toggle="pill" href="#billingAddress" class="nav-link rounded-pill">
+						<i class="fa fa-street-view"></i>
+						Billing Address
+					</a>
+				</li>
+				<li class="nav-item">
+					<a data-toggle="pill" href="#cardDetails" class="nav-link  rounded-pill">
+						<i class="fa fa-credit-card"></i>
+						Card
+					</a>
+				</li>
+				
+				<li class="nav-item">
+					<a data-toggle="pill" href="#aboutDetails" class="nav-link  rounded-pill">
+						<i class="fa fa-info"></i>
+						About
+					</a>
+				</li>
+			</ul>
+			
+			<div class="tab-content">
+				<div id="billingAddress" class="tab-pane fade">
+					<span class="billingMessage"></span>
+					<form autocomplete="off" id="addressForm">
+						<div class="row" style="overflow-y: scroll; max-height: 420px;">
+							<div class="col-12 form-group">
+								<label>Submission Time Setting</label>
+								<select class="enabledMilisecond form-control">
+									<option value="enable">Enable Milisecond</option>
+									<option value="disable">Disable Milisecond</option>
+								</select>
+							</div>
+							<div class="col-12 form-group">
+								<label>Enable / Disable Auto Billing</label>
+								<select class="enabledAutoBilling form-control">
+									<option value="enable">Enable Autobilling</option>
+									<option value="disable">Disable Autobilling</option>
+								</select>
+							</div>
+							<div class="col-6 form-group">
+								<label>First Name <span style='color: red'>*</span></label>
+								<input type="text" maxlength="15" minlength="1" name="firstName" class="form-control firstName">
+							</div>
+							<div class="col-6 form-group">
+								<label>Last Name <span style='color: red'>*</span></label>
+								<input type="text" maxlength="15" minlength="1" name="lastName" class="lastName form-control">
+							</div>
+						
+							<div class="col-12 form-group">
+								<label>Address Line 1 <span style='color: red'>*</span></label>
+								<input type="text" minlength="2" maxlength="30" name="address1" class="address1 form-control">
+							</div>
+							<div class="col-12 form-group">
+								<label>Address Line 2 (optional)</label>
+								<input type="text" maxlength="30" name="address2" class="address2 form-control">
+							</div>
+							<div class="col-12 form-group">
+								<label>Address Line 3 (optional)</label>
+								<input type="text" maxlength="30" name="address3" class="address3 form-control">
+							</div>
+							<div class="col-4 form-group">
+								<label>Postal Code <span style='color: red'>*</span></label>
+								<input type="text" name="postalCode" maxlength="6" class="postalCode form-control">
+							</div>
+							<div class="col-8 form-group">
+								<label >Locality / City Name <span style='color: red'>*</span></label>
+								<input type="text" name="locality" class="locality form-control">
+							</div>
+							
+							<div class="col-12 form-group">
+								<label>State <span style='color: red'>*</span></label>
+								<select name="state" class="state form-control">
+									<option value="" disabled="" selected=""></option>
+									<option value="1: Object">Kuala Lumpur</option>
+									<option value="2: Object">Labuan</option>
+									<option value="3: Object">Putrajaya</option>
+									<option value="4: Object">Johor</option>
+									<option value="5: Object">Kedah</option>
+									<option value="6: Object">Kelantan</option>
+									<option value="7: Object">Melaka</option>
+									<option value="8: Object">Negeri Sembilan</option>
+									<option value="9: Object">Pahang</option>
+									<option value="10: Object">Perak</option>
+									<option value="11: Object">Perlis</option>
+									<option value="12: Object">Pulau Pinang</option>
+									<option value="13: Object">Sabah</option>
+									<option value="14: Object">Sarawak</option>
+									<option value="15: Object">Selangor</option>
+									<option value="16: Object">Terengganu</option>
+								</select>
+							</div>
+							
+							<div class="col-12 form-group">
+								<label>Phone Number <span style='color: red'>*</span></label>
+								<input type="text" minlength="7" maxlength="20" name="phoneNumber" class="phoneNumber form-control">
+							</div>
+							<div class="col-12 form-group">
+								<label>Email <span style='color: red'>*</span></label>
+								<input type="email" name="email" class="email form-control">
+							</div>
+						</div>
+						<button type="submit" id="saveAddress" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Save Address </button>
+					</form>
+				</div>
+				
+				<div id="cardDetails" class="tab-pane fade">
+					
+					<div class="cc-types">
+						<img class="cc-types__img cc-types__img--amex">
+						<img class="cc-types__img cc-types__img--visa">
+						<img class="cc-types__img cc-types__img--mastercard">
+						<img class="cc-types__img cc-types__img--disc">
+						<img class="cc-types__img cc-types__img--genric">
+					</div>
+					
+					<span class="cardMessage"></span>
+					
+					<form autocomplete="off" role="form" id="cardDetailsForm">
+						<div class="form-group">
+							<label>Name on card</label>
+							<input type="text" name="cardName" class="cardName form-control" minlength="4" maxlength="50">
+						</div>
+						
+						<div class="form-group">
+							<label for="cardNumber">Card number</label>
+							<div class="input-group">
+								<input type="text" maxlength="19" name="cardNumber" placeholder="Your card number" class="cardNumber form-control card cc-number-input">
+								<div class="input-group-append">
+									<span class="input-group-text text-muted">
+										<i class="fa fa-cc-visa mx-1"></i>
+										<i class="fa fa-cc-amex mx-1"></i>
+										<i class="fa fa-cc-mastercard mx-1"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4">
+								<div class="form-group">
+									<label><span>Expiration</span></label>
+									<select class="month cardMonth form-control">
+											
+									</select>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="form-group">
+									<label><span>&nbsp;</span></label>
+									<select class="year cardYear form-control">
+											
+									</select>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="form-group mb-4">
+									<label>CVV</label>
+									<input autocomplete="off" name="cvv" type="text" maxlength="4" minlength="3" required class="form-control cvv">
+								</div>
+							</div>
+						</div>
+						<button type="submit" id="addCard" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Save Card  </button>
+					</form>
+				</div>
+
+				<div id="proxyTab" class="tab-pane fade  show active">
+					<span class="proxyMessage"></span>
+					<div id="proxyForm">
+						<div class="row">
+							<div class="form-group col-9">
+								<input placeholder="Format Host:Port:Username:Password" type="text" class="importProxyInput proxyInput form-control" name="">
+							</div>
+							<div class="form-group col-3">
+								<button type="button" class="importProxyBtn proxyInput btn btn-sm btn-primary">Import</button>
+							</div>
+							<div class="form-group col-12">
+								<label class="d-flex justify-content-between form-control-label">
+									<span>Proxy Host <span style='color: red'>*</span></span>
+									<span>Your IP: <span class="ipInfo"></span></span>
+								</label>
+								<input label="host" type="text" class="proxyInput host form-control" name="">
+							</div>
+							<div class="form-group col-6">
+								<label class="form-control-label">Proxy Port <span style='color: red'>*</span></label>
+								<input label="port" type="number" min="1" max="65535" class="proxyInput port form-control" name="">
+							</div>
+						
+							
+							<div class="form-group col-6">
+								<label class="form-control-label">Proxy Type <span style='color: red'>*</span></label>
+								<select label="scheme" class="proxyInput scheme form-control">
+									<option value="http">HTTP</option>
+									<option value="https">HTTPS</option>
+									<option value="socks4">SOCKS4</option>
+									<option value="socks5">SOCKS5</option>
+								</select>
+							</div>
+						
+							<div class="form-group col-12">
+								<label class="form-control-label">Username</label>
+								<input label="username" type="text" class="proxyInput username form-control" name="">
+							</div>
+							<div class="form-group col-12">
+								<label class="form-control-label">Password</label>
+								<input label="password" type="text" class="proxyInput password form-control" name="">
+							</div>
+						</div>
+						
+						<button type="submit" label="connect" class="connectDisconnectProxy subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Connect Proxy</button>
+
+						<hr>
+
+						<div class="row">
+							<div class="form-group col-12">
+								<label class="form-control-label">User Agent</label>
+								<input label="userAgent" type="text" class="userAgent form-control" name="">
+							</div>
+							<div class="form-group col-12">
+								<span class="switch switch-sm">
+									<input type="checkbox" class="switch userAgentSwitch" id="UASwitch">
+									<label for="UASwitch">Enable UA</label>
+								</span>
+								<span class="switch switch-sm">
+									<input type="checkbox" class="switch loadImageSwitch" id="loadImage">
+									<label for="loadImage">Load Image</label>
+								</span>
+								
+							</div>
+						</div>
+
+						
+					</div>
+				</div>
+
+				<div id="aboutDetails" class="tab-pane fade">
+					<span class="exportMessage"></span>
+					<div>
+						<div class="form-group">
+							<label class="form-control-label">Import / Export</label>
+							<textarea rows="3" class="form-control import_export_textarea"></textarea>
+						</div>
+						<div class="form-group">
+							<button class="export_data btn btn-sm btn-primary">Export Data</button>
+							<button class="import_data btn btn-sm btn-success">Import Data</button>
+							<button class="clear_data btn btn-sm btn-danger">Clear</button>
+						</div>
+					</div>
+					<hr>
+					<span class="licenseMessage"></span>
+
+					<div class="form-group">
+						<label class="form-control-label">UID <span style="font-size: 12px;">(Used to get license)</span></label>
+						<textarea readonly="" rows="2" class="form-control uid"></textarea>
+					</div>
+					<form id="licenseForm" method="post">
+						<div class="form-group">
+							<label class="form-control-label">License</label>
+							<textarea rows="3" class="form-control license"></textarea>
+						</div>
+						<div class="form-group">
+							<button type="submit" id="addCard" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Register License  </button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+        <button class="btn showModal btn-success btn-sm" style="display: none;" data-toggle="modal" data-target="#editModal"></button>
+
+		<div class="modal" style="top: 50px;" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Edit Card Details.</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+						<div class="modalContent"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="vendors/jquery.js"></script>
+	<script src="vendors/bootstrap.js"></script>
+	<script src="vendors/credit.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/popup.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/card.css">
+	<script src="css/card.js"></script>
+</html>
